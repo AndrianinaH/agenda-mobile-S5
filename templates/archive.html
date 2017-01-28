@@ -1,0 +1,22 @@
+<ion-view>
+	<ion-nav-title>Archives des tâches</ion-nav-title>
+	<ion-nav-buttons side="left">
+		<button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+	</ion-nav-buttons>
+	<ion-content class="has-header">
+		<ion-list>
+		    <ion-item class="item-remove-animate item-icon-right" id="list_icon" type="item-text-wrap">
+		      <div id="icon_check">
+		      	  <a class="ion-android-checkbox" id="big_icon"></a>
+		      </div>
+	          <div>
+		          <h2><del>Finir interface menu home</del></h2>
+				  <h4><strong><i class="ion-ios-timer-outline" id="mini_icon"></i><del>15/01/2017  20:20</del></strong></h4>
+				  <h4><strong><i class="ion-android-list" id="mini_icon"></i><del>Asa</del></strong></h4>
+		      </div>
+		      <a class="icon ion-chevron-right icon-accessory"  href="#/menu/taskDetail/1"></a>
+		    </ion-item>
+	    </ion-list>
+		<button class="button button-positive icon ion-plus-round create_task" id="rond2" ng-click="modal.show()"></button>
+	</ion-content>
+</ion-view>

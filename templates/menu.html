@@ -1,0 +1,61 @@
+<ion-side-menus>
+  <ion-pane ion-side-menu-content>
+    <ion-nav-bar class="bar-stable">
+      <ion-nav-back-button class="button-clear"><i class="ion-ios-arrow-left"></i> Retour</ion-nav-back-button>
+      <ion-nav-buttons side="right">
+        <a class="button button-clear icon ion-android-notifications" href="#/tab/login"><i class="badge badge-assertive" id="badgeflottant">0</i></a>
+        <a class="button button-positive button-large" id="rond2" ng-click = "openPopover($event)">A</a>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-nav-view name="menuContent" animation="slide-left-right"></ion-nav-view>
+  </ion-pane>
+
+  <ion-side-menu side="left">
+    <ion-content>
+      <ion-list>
+        <ion-item nav-clear menu-close href="#/menu/home">
+          <strong><span class="icon ion-home"></span> Tableau de bord</strong>
+        </ion-item>
+        <ion-item nav-clear menu-close href="#">
+          <strong><span class="icon ion-android-calendar"></span> Aujourd'hui</strong><span class="badge badge-assertive">0</span>
+        </ion-item>
+        <ion-item nav-clear menu-close href="#">
+          <strong><span class="icon ion-calendar"></span> Semaine</strong><span class="badge badge-assertive">0</span>
+        </ion-item>
+        <ion-item nav-clear menu-close href="#">
+          <strong><span class="icon ion-android-list"></span> Asa</strong><span class="badge badge-assertive">0</span>
+        </ion-item>
+        <ion-item nav-clear menu-close href="#">
+          <strong><span class="icon ion-android-list"></span> Trano</strong><span class="badge badge-assertive">0</span>
+        </ion-item>
+        <ion-item class="item-remove-animate" id="createTaskBox" type="item-text-wrap">
+          <div>
+              <a class="button button-positive ion-plus-round"></a>
+          </div>
+          <div id="inputTaskBox">
+            <label class="item item-input">
+              <input type="text" placeholder="Ajouter une liste"> 
+            </label> 
+          </div>
+        </ion-item>
+          <ion-item nav-clear menu-close href="#/menu/archive">
+            <strong><span class="icon ion-android-archive"></span> Archives des tâches</strong>
+          </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-side-menu>
+</ion-side-menus>
+
+ <!-- --------------------------menu déroulant profil----------------------- -->
+<script id = "popover.html" type = "text/ng-template">
+   <ion-popover-view>
+      <ion-list>
+        <ion-item nav-clear href="#/menu/profil">
+          <strong><i class="icon ion-person"></i> Profil</strong>
+        </ion-item>
+        <ion-item nav-clear href="#">
+          <strong><i class="icon ion-log-out"></i> Déconnexion</strong>
+        </ion-item>
+      </ion-list>
+   </ion-popover-view>
+</script>

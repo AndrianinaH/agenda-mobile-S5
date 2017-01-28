@@ -1,0 +1,44 @@
+<ion-modal-view>
+	<ion-header-bar class="bar bar-header bar-stable">
+	  <h1 class="title">Créer une tâche</h1>
+	  <button class="button button-clear icon ion-close" ng-click="modal.hide()"></button>
+	</ion-header-bar>
+	<ion-content class="padding">
+	    <form name="myForm" novalidate>
+			<label class="item item-input item-floating-label">
+				<span class="input-label light">Nom de la tâche</span>
+				<input type="text" placeholder="Nom de la tâche"> 
+			</label>
+			<div id="datePick">
+				<div id="infoDatePick">
+					<h5 class="light">Date d'échéance</h5>
+					<span>{{datepick}}</span> 
+					<span>{{timepick}}</span> 
+				</div>
+				<div id="iconDatePick">
+					<i class="icon ion{{iconDate}}-calendar" ng-click="openPopoverenDatePicker()"></i>
+					<i class="icon ion-ios-clock{{iconTime}}" ng-click="openPopoverenTimePicker()"></i>
+				</div>
+			</div> 
+			<div id="datePick">
+				<div id="infoDatePick">
+					<h5 class="light">Programmer un rappel</h5>
+					<span>{{datepick2}}</span>
+					<span>{{timepick2}}</span> 
+				</div>
+				<div id="iconDatePick">
+					<i class="icon ion{{iconDate2}}-calendar" ng-click="openPopoverenDatePicker2()"></i>
+					<i class="icon ion-ios-clock{{iconTime2}}" ng-click="openPopoverenTimePicker2()"></i>
+				</div>
+			</div>
+			<label class="item item-input item-floating-label">
+				<span class="input-label light">Détail de la tâche</span>
+				<textarea placeholder="Détail de la tâche" onkeyup="auto_grow(this)"></textarea>  
+			</label> 
+			<br>
+		    <button class="button button-balanced icon ion-android-checkmark-circle">
+			  créer la tâche
+			</button>
+		</form>
+	</ion-content>
+</ion-modal-view>

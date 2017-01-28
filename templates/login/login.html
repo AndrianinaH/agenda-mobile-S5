@@ -1,0 +1,22 @@
+<ion-view>
+ <ion-nav-title>Connexion</ion-nav-title>
+ <ion-content>
+  	<div class="list login">
+  	<img src="img/logo_agenda.png">
+  	<form name="myForm" ng-submit="connect(user)" novalidate>
+	    <label class="item item-input item-floating-label">
+			<span class="input-label light">Adresse e-mail</span>
+			<input type="email" placeholder="Adresse e-mail" ng-model="user.email" required> 
+		</label>
+		<label class="item item-input item-floating-label">
+			<span class="input-label light">Mot de passe</span>
+			<input type="password" placeholder="Mot de passe" ng-model="user.password" required> 
+		</label> 
+		 <br>
+	     <button class="button button-balanced icon ion-log-in" type="submit">
+		 connexion
+		</button>
+	</form>
+	</div>
+ </ion-content>
+</ion-view>

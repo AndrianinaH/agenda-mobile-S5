@@ -1,0 +1,192 @@
+::-webkit-input-placeholder 
+{
+   color: white !important;
+}
+:-moz-placeholder 
+{ /* Firefox 18- */
+   color: white !important;  
+}
+::-moz-placeholder 
+{  /* Firefox 19+ */
+   color: white !important;  
+}
+
+input[type="text"], input[type="password"], input[type="email"],textarea{
+  color: #FFF;
+  font-weight: 600;
+}
+textarea {
+    resize: none;
+    overflow: hidden;
+    transition: all 0.2s;
+}
+/*-------------- theme global ---------------*/
+.item-stacked-label>input{
+	color: #FFF;
+}
+.scroll-content {
+    background-color: #2aa57d;
+}
+.item-stacked-label,.item-floating-label {
+    background-color: rgb(84, 185, 143);
+}
+.item-content>h2,.item-content>h4
+{
+   /*color:#219455 !important;*/
+   line-height: 1.3 !important;
+   color:#000;
+}
+.menu-left{
+  background-color: #FFF !important;
+}
+/*-------------- navigation ---------------*/
+.icon-accessory
+{
+	color: #FFF!important;
+  background-color: #30af69 !important;
+  right: 0px !important;
+  text-decoration: none;
+}
+.tabs-striped .tabs, .tab-nav 
+{
+  background-color: #368665 !important;
+}
+
+/*-------------- login et inscription--------------*/
+#error{
+  margin:10px;
+}
+
+.login{
+  width: 90%;
+  margin: auto;
+  text-align: center;
+}
+.login>img{
+  width: 200px;
+}
+#rond{
+  border-radius: 50%;
+  padding: 5px;
+}
+#rond2{
+  border-radius: 55%;
+  font-size: 22px;
+  font-family: lucida;
+}
+
+.create_task{
+  position: fixed;
+  right: 20px;
+  top: 85%; 
+  padding: 5px;
+  z-index: 120;
+}
+.popover{
+  height: auto;
+}
+.item-stacked-label input, .item-stacked-label textarea, textarea {
+    background-color: rgb(84, 185, 143); 
+}
+.item-stacked-label{
+  text-align: left;
+}
+.platform-android .popover {
+    margin-top:12px;
+}
+/*-------------- date picker --------------*/
+#datePick{
+  display: flex;
+  background-color:rgb(84, 185, 143);
+  border: 1px solid #ddd;
+  margin-left: -1px; 
+  margin-right: -1px; 
+}
+#infoDatePick{
+  width: 70%;
+  color: #FFF;
+  text-align: left;
+  margin-left: 15px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+#infoDatePick>span{
+  font-size: 15px;
+  font-family: comic Sans ms;
+  font-weight: 600;
+  margin-right: 10px;
+}
+#iconDatePick{
+  width: 30%;
+  color: #FFF;
+  font-size: 40px;
+  margin: auto;
+  text-align: center;
+}
+/*-------------- menu principal ------*/
+.overflow-scroll { 
+  overflow-y: auto;
+}
+#badgeflottant{
+  position: relative;
+  right: 8px;
+  top: 10px;
+}
+/*-------- ajout taskbox ----------*/
+#createTaskBox{
+  display: flex;
+}
+
+#inputTaskBox{
+  width: 100%;
+}
+#inputTaskBox>label>input{
+  color: grey;
+}
+/*-- placeholder pour chrome et firefox ---*/
+#inputTaskBox ::-webkit-input-placeholder 
+{
+   color: grey !important;
+}
+#inputTaskBox :-moz-placeholder 
+{
+   color: grey !important;
+}
+#inputTaskBox ::-moz-placeholder 
+{
+   color: grey !important;
+}
+
+#inputTaskBox>.item-input{
+  border-width: 0px;
+  margin-left: 5px;
+}
+/*------------- home --------------*/
+#mini_icon{
+  font-size: 20px;
+  margin-right: 5px;
+}
+#big_icon{
+  font-size: 40px;
+  margin-right: 20px;
+}
+#list_icon{
+  display: flex;
+  margin: 15px;
+}
+#icon_check{
+  position: relative;
+  top:17px;
+}
+
+/*-------- color thème bleu-vert
+tab : #368665;
+input : rgb(84, 185, 143);
+fond : #2aa57d;
+chevron list : #30af69;
+fond list : #9cdcbe;
+text list :#219455;
+
+ ---------*/
+
+

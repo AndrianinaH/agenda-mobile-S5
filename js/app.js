@@ -127,6 +127,16 @@ angular.module('starter', ['ionic', 'menuController', 'starter.services', 'ionic
         controller: 'taskDetailController'
       }
     }
+  })
+
+  .state('menu.taskDetailArchive', {
+    url: '/taskDetailArchive/:idtask',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/taskDetailArchive.html',
+        controller: 'taskDetailArchiveController'
+      }
+    }
   });
 
 

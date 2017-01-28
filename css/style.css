@@ -16,9 +16,12 @@ input[type="text"], input[type="password"], input[type="email"],textarea{
   font-weight: 600;
 }
 textarea {
-    resize: none;
-    overflow: hidden;
-    transition: all 0.2s;
+  resize: none;
+  overflow: hidden;
+  transition: all 0.2s;
+}
+textarea[readonly]:not(.cloned-text-input){
+  cursor: default;
 }
 /*-------------- theme global ---------------*/
 .item-stacked-label>input{
@@ -85,7 +88,7 @@ textarea {
 .popover{
   height: auto;
 }
-.item-stacked-label input, .item-stacked-label textarea, textarea {
+.item-stacked-label input, .item-stacked-label textarea, textarea,textarea[readonly]:not(.cloned-text-input) {
     background-color: rgb(84, 185, 143); 
 }
 .item-stacked-label{

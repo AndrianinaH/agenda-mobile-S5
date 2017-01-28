@@ -3,7 +3,7 @@
 	  <h1 class="title">Créer une tâche</h1>
 	  <button class="button button-clear icon ion-close" ng-click="modal.hide()"></button>
 	</ion-header-bar>
-	<ion-content class="padding">
+	<ion-content class="padding" ng-controller="createTaskController">
 	    <form name="myForm" novalidate>
 			<label class="item item-input item-floating-label">
 				<span class="input-label light">Nom de la tâche</span>

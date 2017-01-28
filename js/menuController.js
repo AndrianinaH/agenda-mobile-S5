@@ -32,14 +32,13 @@ angular.module("menuController", [])
 
 //---------------------------------------- menu principal -----------------------------------------//
 .controller('menuCtrl', function($scope, $ionicPopover,ionicDatePicker,ionicTimePicker) {
-  //----------------- popover create task -------------//
+  //----------------- popover profil and log out -------------//
    $ionicPopover.fromTemplateUrl('popover.html', {
       scope: $scope
    }).then(function(popover) {
       $scope.popover = popover;
    });
    $scope.openPopover = function($event) {
-
       $scope.popover.show($event);
    };
    $scope.closePopover = function() {
@@ -48,14 +47,6 @@ angular.module("menuController", [])
    //Cleanup the popover when we're done with it!
    $scope.$on('$destroy', function() {
       $scope.popover.remove();
-   });
-   // Execute action on hide popover
-   $scope.$on('popover.hidden', function() {
-      // Execute action
-   });
-   // Execute action on remove popover
-   $scope.$on('popover.removed', function() {
-      // Execute action
    });
    //--------------------------- date picker -------------------------//
     var cible = {
@@ -207,6 +198,18 @@ angular.module("menuController", [])
       ionicTimePicker.openTimePicker(cibleHeure2);
     }; 
    
+})
+
+.controller('taskDetailArchiveController', function($scope) { 
+  $scope.datepick= "22/12/2017";
+  $scope.timepick= "22:00";
+
+  $scope.datepick2= "24/12/2017";
+  $scope.timepick2= "12:40";
+})
+
+.controller('createTaskController', function($scope) { 
+  
 });
 
 

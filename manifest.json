@@ -1,10 +1,10 @@
 {
-  "name": "My Ionic App",
-  "short_name": "My Ionic App",
+  "name": "Agenda",
+  "short_name": "Agenda",
   "start_url": "index.html",
   "display": "standalone",
   "icons": [{
-    "src": "icon.png",
+    "src": "img/logo_agenda.png",
     "sizes": "512x512",
     "type": "image/png"
   }]

@@ -1,0 +1,19 @@
+<ion-popover-view id="editListPopover">
+    <ion-header-bar class="bar bar-header bar-stable">
+      <h1 class="title">Modifier la Liste</h1>
+      <button class="button button-clear icon ion-close" ng-click="closeEditList()"></button>
+    </ion-header-bar>
+    <ion-content scroll="false" id="editListFond">
+        <div class="item-remove-animate" id="inputTaskBox2" type="item-text-wrap">
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Nom de la Liste</span>
+                <input type="text" value="Asa"> 
+            </label>
+            <br>
+            <center>
+                <button class="button button-calm icon ion-edit"> Modifier</button> 
+                <button class="button button-assertive icon ion-trash-a"> Supprimer</button> 
+            </center> 
+        </div>
+    </ion-content>
+</ion-popover-view>

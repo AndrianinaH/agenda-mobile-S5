@@ -1,17 +1,48 @@
 angular.module('starter.services', [])
 
-.factory('Agenda', function($http) { 
+.factory('Agenda', function($http,$state) { 
     
     return{
-       menuDujour: function(){
-            return $http.get('http://localhost/angularResto/Accueil_controller/getMenuDuJour');
+        
+        //------------- affichage image de profil -----------//
+        getInitial: function(email){
+            return email.charAt(0).toUpperCase();
         },
-        allProduit: function(){
-            return $http.get('http://localhost/angularResto/Accueil_controller/getProduit');
+        getColor: function(){
+            var num=Math.floor((Math.random() * 5) + 1);
+            switch(num) {
+              case 1:
+                return "positive";
+              case 2:
+                return "calm";
+              case 3:
+                return "assertive";
+              case 4:
+                return "royal";
+              case 5:
+                return "energized";  
+            }
         },
-        allCategorie: function(){
-            return $http.get('http://localhost/angularResto/Accueil_controller/getCategorie');
-        }
+        //------------- test de login -----------//
+        testUser: function(email,mdp)
+        {
+            return $http({
+            method: "post",
+            url: "http://localhost:8080/listeo/webservice/login.jsp",
+            data: 'mail='+email+'&mdp='+mdp,
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            });
+        },
+         //------------- test de login -----------//
+        createUser: function(nom,datenaissance,email,mdp)
+        {
+            return $http({
+            method: "post",
+            url: "http://localhost:8080/listeo/webservice/inscription.jsp",
+            data: 'nom='+nom+'&dateNaiss='+datenaissance+'&mail='+email+'&pass='+mdp,
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            });
+        },
     } 
 });
 

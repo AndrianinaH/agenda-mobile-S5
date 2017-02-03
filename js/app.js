@@ -83,6 +83,15 @@ angular.module('starter', ['ionic', 'menuController', 'starter.services', 'ionic
     }
   })
 
+  .state('tab.signinSuccess', {
+    url: '/login/:success',
+    views: {
+      'login': {
+        templateUrl: 'templates/login/login.html',
+        controller: 'loginController'
+      }
+    }
+  })
   //----------------- menu principal ---------------------//
   .state('menu', {
     url: '/menu',
@@ -144,7 +153,7 @@ angular.module('starter', ['ionic', 'menuController', 'starter.services', 'ionic
 
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/menu/home');
-  //$urlRouterProvider.otherwise('/tab/login');
+  //$urlRouterProvider.otherwise('/menu/home');
+  $urlRouterProvider.otherwise('/tab/login');
 
 });

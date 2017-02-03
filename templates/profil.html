@@ -5,19 +5,20 @@
   </ion-nav-buttons>
  <ion-content>
   	<div class="row">
-	  <div class="col"><center><img src="img/admin.jpg"></center></div>
+	  <div class="col"><center><a class="button button-{{color}} button-large" id="rond3">{{initial}}</a></div>
 	</div>
 	<div class="row">
-	  <div class="col"><center><strong>Admin</center></strong></div>
+	  <div class="col"><center><strong>{{username}}</center></strong></div>
 	</div>
 	<div class="row">
-	  <div class="col"><center>admin@gmail.com</center></div>
+	  <div class="col"><center><strong>{{usermail}}</strong></center></div>
 	</div>
-	<center>
-	  	<button class="button button-small button-dark icon ion-edit" type="submit">
-		  modifier le profil
-		</button>
-	</center>
+	<div class="row">
+	  <div class="col"><center>date de naissance : {{userbirthday}}</center></div>
+	</div>
+	<div class="row">
+	  <div class="col"><center>date d'inscription : {{usersignin}}</center></div>
+	</div>
 	<button class="button button-positive icon ion-plus-round create_task" id="rond2" ng-click="modal.show()"></button>
  </ion-content>
 </ion-view>

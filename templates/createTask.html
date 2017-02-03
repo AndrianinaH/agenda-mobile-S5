@@ -4,10 +4,10 @@
 	  <button class="button button-clear icon ion-close" ng-click="modal.hide()"></button>
 	</ion-header-bar>
 	<ion-content class="padding" ng-controller="createTaskController">
-	    <form name="myForm" novalidate>
+	    <form name="myForm" ng-submit="createTask(task)" novalidate>
 			<label class="item item-input item-floating-label">
 				<span class="input-label light">Nom de la tâche</span>
-				<input type="text" placeholder="Nom de la tâche"> 
+				<input type="text" placeholder="Nom de la tâche" ng-model="task.name" required>
 			</label>
 			<div id="datePick">
 				<div id="infoDatePick">
@@ -23,8 +23,8 @@
 			<div id="datePick">
 				<div id="infoDatePick">
 					<h5 class="light">Programmer un rappel</h5>
-					<span>{{datepick2}}</span>
-					<span>{{timepick2}}</span> 
+					<span ng-model="task.datepick2">{{datepick2}}</span>
+					<span ng-model="task.timepick2">{{timepick2}}</span> 
 				</div>
 				<div id="iconDatePick">
 					<i class="icon ion{{iconDate2}}-calendar" ng-click="openPopoverenDatePicker2()"></i>
@@ -33,12 +33,15 @@
 			</div>
 			<label class="item item-input item-floating-label">
 				<span class="input-label light">Détail de la tâche</span>
-				<textarea placeholder="Détail de la tâche" onkeyup="auto_grow(this)"></textarea>  
-			</label> 
-			<br>
-		    <button class="button button-balanced icon ion-android-checkmark-circle">
-			  créer la tâche
-			</button>
+				<textarea placeholder="Détail de la tâche" onkeyup="auto_grow(this)" ng-model="task.detail" required></textarea>  
+			</label>
+			<center>
+				<br> 
+				<p class="light"><strong>{{error}}</strong></p>
+			    <button class="button button-balanced icon ion-android-checkmark-circle" type="submit">
+				  créer la tâche
+				</button>
+			</center>
 		</form>
 	</ion-content>
 </ion-modal-view>

@@ -59,7 +59,6 @@ textarea[readonly]:not(.cloned-text-input){
 #error{
   margin:10px;
 }
-
 .login{
   width: 90%;
   margin: auto;
@@ -77,7 +76,12 @@ textarea[readonly]:not(.cloned-text-input){
   font-size: 22px;
   font-family: lucida;
 }
-
+#rond3{
+  border-radius: 50%;
+  font-size: 25px;
+  font-family: lucida;
+  padding: 5px;
+}
 .create_task{
   position: fixed;
   right: 20px;
@@ -135,27 +139,39 @@ textarea[readonly]:not(.cloned-text-input){
   right: 8px;
   top: 10px;
 }
+.item>a{
+  text-decoration: none;
+  color: #444;
+}
+#edit_list{
+  font-size: 30px;
+  font-weight: 600;
+  position: absolute;
+  top:12px;
+  right: 65px;
+  cursor: pointer;
+}
 /*-------- ajout taskbox ----------*/
 #createTaskBox{
   display: flex;
 }
-
-#inputTaskBox{
+#inputTaskBox,#inputTaskBox2{
   width: 100%;
 }
 #inputTaskBox>label>input{
   color: grey;
+  background-color: #FFF;
 }
 /*-- placeholder pour chrome et firefox ---*/
-#inputTaskBox ::-webkit-input-placeholder 
+#inputTaskBox ::-webkit-input-placeholder,#inputTaskBox2 ::-webkit-input-placeholder 
 {
    color: grey !important;
 }
-#inputTaskBox :-moz-placeholder 
+#inputTaskBox :-moz-placeholder, #inputTaskBox2 :-moz-placeholder
 {
    color: grey !important;
 }
-#inputTaskBox ::-moz-placeholder 
+#inputTaskBox ::-moz-placeholder, #inputTaskBox2 ::-moz-placeholder 
 {
    color: grey !important;
 }
@@ -164,6 +180,26 @@ textarea[readonly]:not(.cloned-text-input){
   border-width: 0px;
   margin-left: 5px;
 }
+#inputTaskBox2>.item-input{
+  border-width: 0px;
+  font-weight: 600;
+}
+/*------------- editList ----------*/
+#editListFond{
+  background-color: #f8f8f8 !important;
+}
+#editListPopover{
+  width: 300px !important;
+  height: 200px !important;
+  top:50px !important;
+  left: 30px !important;
+}
+#inputTaskBox2>label>input{
+  color: #000;
+  background-color: #f8f8f8;
+  font-size: 20px !important;
+}
+
 /*------------- home --------------*/
 #mini_icon{
   font-size: 20px;

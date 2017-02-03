@@ -3,16 +3,12 @@
  <ion-content>
   	<div class="list login">
   	<img src="img/logo_agenda.png">
-  	<form name="myForm" novalidate>
+  	<form name="myForm" ng-submit="signin(user)" novalidate>
 		<center><button class="button button-stable button-large icon ion-person-add" id="rond"></button></center>
 		<br>
 	    <label class="item item-input item-floating-label">
 			<span class="input-label light">Nom d'utilisateur</span>
-			<input type="text" placeholder="Nom d'utilisateur" ng-model="username"> 
-		</label>
-		<label class="item item-input item-floating-label">
-			<span class="input-label light">Adresse e-mail</span>
-			<input type="email" placeholder="Adresse e-mail" ng-model="email"> 
+			<input type="text" placeholder="Nom d'utilisateur" ng-model="user.username"> 
 		</label>
 		<div id="datePick">
 			<div id="infoDatePick">
@@ -24,11 +20,16 @@
 			</div>
 		</div>
 		<label class="item item-input item-floating-label">
+			<span class="input-label light">Adresse e-mail</span>
+			<input type="email" placeholder="Adresse e-mail" ng-model="user.email"> 
+		</label>
+		<label class="item item-input item-floating-label">
 			<span class="input-label light">Mot de passe</span>
-			<input type="password" placeholder="Mot de passe" ng-model="password"> 
+			<input type="password" placeholder="Mot de passe" ng-model="user.password"> 
 		</label> 
 		<br>
-	    <button class="button button-balanced icon ion-android-checkmark-circle" ng-click="signin()">
+		<p class="light"><strong>{{error}}</strong></p>
+	    <button class="button button-balanced icon ion-android-checkmark-circle" type="submit">
 		  confirmer
 		</button>
 	</form>

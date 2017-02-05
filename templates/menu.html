@@ -30,16 +30,16 @@
             <a href="#menu/home/{{taskbox.idTaskbox}}/{{taskbox.nomTaskbox}}">
               <strong><span class="icon ion-android-list"></span> {{taskbox.nomTaskbox}}</strong><span class="badge badge-assertive">{{taskbox.nbtachenonfait}}</span>
             </a>
-            <span class="positive icon ion-compose" id="edit_list" ng-click="openEditList($event)"></span>
+            <span class="positive icon ion-compose" id="edit_list" ng-click="openEditList($event,{{taskbox}})"></span>
           </ion-item>
         </div>
         <ion-item class="item-remove-animate" id="createTaskBox" type="item-text-wrap">
           <div>
-              <a class="button button-positive ion-plus-round"></a>
+              <a class="button button-positive ion-plus-round" ng-click="createBox(newBox)"></a>
           </div>
           <div id="inputTaskBox">
             <label class="item item-input">
-              <input type="text" placeholder="Ajouter une liste"> 
+              <input type="text" placeholder="Ajouter une liste" ng-model="newBox"> 
             </label> 
           </div>
         </ion-item>

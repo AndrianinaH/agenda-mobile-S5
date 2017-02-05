@@ -3,6 +3,20 @@ angular.module('starter.services', [])
 .factory('Agenda', function($http,$state) { 
     
     return{
+
+        //------------- formater date -----------//
+        formterDate: function(date){
+            var day=date.split(" ");
+            var days=day[0].split("-");
+            var ret= days[2]+"/"+days[1]+"/"+days[0]+" "+day[1];
+            return ret;
+        },
+        //------------- formater date solo -----------//
+        formaterDateSolo: function(date){
+            var day=date.split("-");
+            var ret= day[2]+"/"+day[1]+"/"+day[0];
+            return ret;
+        },
         //------------- affichage image de profil -----------//
         getInitial: function(email){
             return email.charAt(0).toUpperCase();
@@ -94,7 +108,7 @@ angular.module('starter.services', [])
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             });
         },
-    //------------------------ creation et update des taches des utilisateurs ----------------------//
+    //------------------------ manipulation des taches des utilisateurs ----------------------//
         //------------- terminer tache -----------//
         terminerTache: function(idTask)
         {
@@ -112,6 +126,36 @@ angular.module('starter.services', [])
             method: "post",
             url: "http://localhost:8080/listeo/webservice/restaurerTache.jsp",
             data: 'idTask='+idTask,
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            });
+        },
+        //------------- create Box -----------//
+        createBox: function(nomTaskBox,idUser)
+        {
+            return $http({
+            method: "post",
+            url: "http://localhost:8080/listeo/webservice/createBox.jsp",
+            data: 'nomTaskBox='+nomTaskBox+'&idUser='+idUser,
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            });
+        },
+        //------------- update Box -----------//
+        updateBox: function(nomTaskBox,idTaskBox)
+        {
+            return $http({
+            method: "post",
+            url: "http://localhost:8080/listeo/webservice/updateBox.jsp",
+            data: 'nomTaskBox='+nomTaskBox+'&idTaskBox='+idTaskBox,
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            });
+        },
+        //------------- delete Box -----------//
+        deleteBox: function(idTaskBox)
+        {
+            return $http({
+            method: "post",
+            url: "http://localhost:8080/listeo/webservice/deleteBox.jsp",
+            data: 'idTaskBox='+idTaskBox,
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             });
         },

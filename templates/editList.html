@@ -7,12 +7,13 @@
         <div class="item-remove-animate" id="inputTaskBox2" type="item-text-wrap">
             <label class="item item-input item-stacked-label">
                 <span class="input-label">Nom de la Liste</span>
-                <input type="text" value="Asa"> 
+                <input type="hidden" ng-model="idTaskBox">
+                <input type="text" ng-model="nomTaskBox"> 
             </label>
             <br>
             <center>
-                <button class="button button-calm icon ion-edit"> Modifier</button> 
-                <button class="button button-assertive icon ion-trash-a"> Supprimer</button> 
+                <button class="button button-calm icon ion-edit" ng-click="updateBox(nomTaskBox,idTaskBox)"> Modifier</button> 
+                <button class="button button-assertive icon ion-trash-a" ng-click="deleteBox(idTaskBox)"> Supprimer</button> 
             </center> 
         </div>
     </ion-content>

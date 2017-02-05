@@ -11,7 +11,7 @@
 		      </div>
 	          <div>
 		          <h2>{{task.libelleTache}}</h2>
-				  <h4><strong><i class="ion-ios-timer-outline" id="mini_icon"></i>{{task.dateLimit}}</strong></h4>
+				  <h4><strong><i class="ion-ios-timer-outline" id="mini_icon"></i>{{formaterDate(task.dateLimit)}}</strong></h4>
 		      </div>
 		      <a class="icon ion-chevron-right icon-accessory"  href="#/menu/taskDetail/{{task.idTache}}/{{task.libelleTache}}/{{task.dateLimit}}/{{task.dateCreation}}/{{task.detail}}"></a>
 		    </ion-item>

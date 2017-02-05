@@ -11,7 +11,7 @@
 		      </div>
 	          <div>
 		          <h2><del>{{task.libelleTache}}</del></h2>
-				  <h4><strong><i class="ion-ios-timer-outline" id="mini_icon"></i><del>{{task.dateLimit}}</del></strong></h4>
+				  <h4><strong><i class="ion-ios-timer-outline" id="mini_icon"></i><del>{{formaterDate(task.dateLimit)}}</del></strong></h4>
 				  <h4><strong><i class="ion-android-list" id="mini_icon"></i><del>{{task.taskBox}}</del></strong></h4>
 		      </div>
 		      <a class="icon ion-chevron-right icon-accessory"  href="#/menu/taskDetailArchive/{{task.idTache}}/{{task.libelleTache}}/{{task.dateLimit}}/{{task.dateCreation}}/{{task.detail}}/{{task.idTaskBox}}/{{task.taskBox}}"></a>

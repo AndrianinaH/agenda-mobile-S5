@@ -11,29 +11,28 @@
   </ion-pane>
 
   <ion-side-menu side="left">
-    <ion-content>
+    <header class="bar bar-header bar-stable">
+      <h1 class="title">Tableau de Bord</h1>
+    </header>
+    <ion-content class="has-header">
       <ion-list>
-        <ion-item nav-clear menu-close href="#/menu/home">
-          <strong><span class="icon ion-home"></span> Tableau de bord</strong>
+        <ion-item nav-clear menu-close href="#/menu/home/{{home.idTaskbox}}/{{home.nomTaskbox}}">
+          <strong><span class="icon ion-home"></span> {{home.nomTaskbox}}</strong><span class="badge badge-assertive">{{home.nbtachenonfait}}</span>
         </ion-item>
-        <ion-item nav-clear menu-close href="#">
-          <strong><span class="icon ion-android-calendar"></span> Aujourd'hui</strong><span class="badge badge-assertive">0</span>
+        <ion-item nav-clear menu-close href="#menu/semaine/1/{{home.idTaskbox}}">
+          <strong><span class="icon ion-android-calendar"></span> Aujourd'hui</strong><span class="badge badge-assertive">{{nbrAujourdhui}}</span>
         </ion-item>
-        <ion-item nav-clear menu-close href="#">
-          <strong><span class="icon ion-calendar"></span> Semaine</strong><span class="badge badge-assertive">0</span>
+        <ion-item nav-clear menu-close  href="#menu/semaine/2/{{home.idTaskbox}}">
+          <strong><span class="icon ion-calendar"></span> Semaine</strong><span class="badge badge-assertive">{{nbrSemaine}}</span>
         </ion-item>
-        <ion-item nav-clear menu-close>
-          <a href="#menu/profil">
-            <strong><span class="icon ion-android-list"></span> Asa</strong><span class="badge badge-assertive">0</span>
-          </a>
-          <span class="positive icon ion-compose" id="edit_list" ng-click="openEditList($event)"></span>
-        </ion-item>
-        <ion-item nav-clear menu-close>
-          <a href="#menu/profil">
-            <strong><span class="icon ion-android-list"></span> Trano</strong><span class="badge badge-assertive">0</span>
-          </a>
-          <span class="positive icon ion-compose" id="edit_list" ng-click="openEditList($event)"></span>
-        </ion-item>
+        <div ng-repeat="taskbox in allTaskBox">
+          <ion-item nav-clear menu-close>
+            <a href="#menu/home/{{taskbox.idTaskbox}}/{{taskbox.nomTaskbox}}">
+              <strong><span class="icon ion-android-list"></span> {{taskbox.nomTaskbox}}</strong><span class="badge badge-assertive">{{taskbox.nbtachenonfait}}</span>
+            </a>
+            <span class="positive icon ion-compose" id="edit_list" ng-click="openEditList($event)"></span>
+          </ion-item>
+        </div>
         <ion-item class="item-remove-animate" id="createTaskBox" type="item-text-wrap">
           <div>
               <a class="button button-positive ion-plus-round"></a>
@@ -56,7 +55,7 @@
 <script id = "popover.html" type = "text/ng-template">
    <ion-popover-view ng-controller="deconnexionController">
       <ion-list>
-        <ion-item nav-clear href="#/menu/profil">
+        <ion-item nav-clear href="#/menu/profil" ng-click="closePopover()">
           <strong><i class="icon ion-person"></i> Profil</strong>
         </ion-item>
         <ion-item nav-clear ng-click="logout(); closePopover()">

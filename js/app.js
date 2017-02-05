@@ -110,7 +110,7 @@ angular.module('starter', ['ionic', 'menuController', 'starter.services', 'ionic
   })
   //-------------- Liste des tâches --------------//
   .state('menu.home', {
-    url: '/home',
+    url: '/home/:idTaskBox/:nomTaskBox',
     views: {
       'menuContent': {
         templateUrl: 'templates/home.html',
@@ -127,9 +127,18 @@ angular.module('starter', ['ionic', 'menuController', 'starter.services', 'ionic
       }
     }
   })
+  .state('menu.semaine', {
+    url: '/semaine/:type/:idTaskBox',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/semaine.html',
+        controller: 'semaineController'
+      }
+    }
+  })
   //------------ détails des tâches ---------------//
   .state('menu.taskDetail', {
-    url: '/taskDetail/:idtask',
+    url: '/taskDetail/:idtask/:nomtask/:echeancetask/:rappeltask/:detailtask',
     views: {
       'menuContent': {
         templateUrl: 'templates/taskDetail.html',
@@ -139,7 +148,7 @@ angular.module('starter', ['ionic', 'menuController', 'starter.services', 'ionic
   })
 
   .state('menu.taskDetailArchive', {
-    url: '/taskDetailArchive/:idtask',
+    url: '/taskDetailArchive/:idtask/:nomtask/:echeancetask/:rappeltask/:detailtask/:idTaskBox/:nomTaskBox',
     views: {
       'menuContent': {
         templateUrl: 'templates/taskDetailArchive.html',

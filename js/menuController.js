@@ -34,7 +34,6 @@ angular.module("menuController", [])
                 console.log(user.password);
                 Agenda.createUser(user.username,$scope.datepick,user.email,user.password)
                 .then(function success(response) {
-                  
                   var rep=response.data;
                   console.log(rep);
                   if(!rep.value)
@@ -45,7 +44,12 @@ angular.module("menuController", [])
                   else
                   {
                     console.log("return ajax success "+rep);
-                    $scope.error="inscription reussi";
+                    //----------- réinitialisation des champs --------//
+                    user.username=null;
+                    user.email=null;
+                    $scope.datepick=null;
+                    $scope.error=null;
+                    user.password=null;
                     $state.go('tab.signinSuccess',{success:1}); 
                   }
                 
@@ -72,9 +76,7 @@ angular.module("menuController", [])
           {
             console.log(user.password);
             //-------- webservice testUser -----------// 
-            Agenda.testUser(user.email,user.password)
-              .then(function success(response) {
-                
+            Agenda.testUser(user.email,user.password).then(function success(response) {  
                 var rep=response.data;
                 console.log(rep);
                 if(!rep.value)
@@ -86,7 +88,10 @@ angular.module("menuController", [])
                 {
                   console.log("return ajax success "+rep);
                   $rootScope.User=rep;
-                  $scope.error="authentification reussi";
+                  //---- vider le formulaire une fois connecter 
+                  user.email=null;
+                  user.password=null;
+                  $scope.error=null;
                   $state.go('menu.profil'); 
                 }
               
@@ -105,9 +110,11 @@ angular.module("menuController", [])
 //---------------------------------------- menu principal -----------------------------------------//
 .controller('menuCtrl', function($scope,$state,$ionicPopover,ionicDatePicker,ionicTimePicker,Agenda,$rootScope) {
   //----------------- color and initial photo de profil --------//
-  var user=$rootScope.User;
-  $scope.initial=Agenda.getInitial(user.mail);
-  $scope.color=Agenda.getColor();
+  $scope.$on('$ionicView.enter', function(e) {
+    var user=$rootScope.User;
+    $scope.initial=Agenda.getInitial(user.mail);
+    $scope.color=Agenda.getColor();
+  });
   //----------------- popover profil and log out ---------------//
   $ionicPopover.fromTemplateUrl('popover.html', {
     scope: $scope
@@ -131,20 +138,28 @@ angular.module("menuController", [])
   $scope.openEditList=function($event){
     $scope.popover2.show($event);
   };
-  $scope.closeEditList = function() {
-    $scope.popover2.hide();
-  };
-
+  //------------------------- get TaskBox by idUser -------------------------//
+  $scope.$on('$ionicView.enter', function(e) {
+    var user=$rootScope.User;
+    Agenda.getTaskBox(user.id).then(function success(response) {
+      $scope.home=response.data[0];
+      var allTaskBox=[];
+      for(var i = 1; i < response.data.length ; i++) {
+        allTaskBox.push(response.data[i]);
+      }
+      $scope.allTaskBox=allTaskBox;
+      Agenda.getTaskAujourdhui(user.id).then(function success(response) {
+          $scope.nbrAujourdhui=response.data.length;
+      });
+      Agenda.getTaskSemaine(user.id).then(function success(response) {
+          $scope.nbrSemaine=response.data.length;
+      });
+     
+    });
+  });
 })
 
 .controller('profilController', function($scope,$ionicModal,Agenda,$rootScope) {
-  //------------- ouvrir create task ----------------//
-  $ionicModal.fromTemplateUrl('templates/createTask.html', {
-    scope: $scope,
-    animation: 'slide-in-up'
-  }).then(function(modal) {
-    $scope.modal = modal;
-  });
   //------------- ajouter info User ----------------//
   $scope.$on('$ionicView.enter', function(e) {
     var user=$rootScope.User;
@@ -155,38 +170,115 @@ angular.module("menuController", [])
     $scope.userbirthday=new Date(user.dateNaissance.iLocalMillis).toLocaleDateString("fr-FR");
     $scope.usersignin=new Date(user.dateInsertion.iLocalMillis).toLocaleDateString("fr-FR");
   });
+})
+
+
+.controller('editListController', function($scope,$rootScope,$state) {
+  $scope.closeEditList = function() {
+    $scope.popover2.hide();
+  };
+})
+.controller('homeController', function($scope,$ionicModal,$rootScope,Agenda,$stateParams) { 
+  //------------------ popup create task ----------------//
+  $ionicModal.fromTemplateUrl('templates/createTask.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });
+
+  //------------------------- get task by idTaskBox -------------------------//
+  $scope.$on('$ionicView.enter', function(e) {
+    var user=$rootScope.User;
+    var idTaskBox=$stateParams.idTaskBox;
+    $rootScope.idTaskBox=idTaskBox;
+    $scope.nomTaskBox=$stateParams.nomTaskBox;
+    Agenda.getTaskNonFait(idTaskBox).then(function success(response) {
+      console.log(response.data);
+      $scope.allTask=response.data;
+    });
+  });
+
+  //---------------------------- terminer tache ----------------------------//
+  $scope.terminerTache = function(idTask){
+    Agenda.terminerTache(idTask).then(function success(response) {
+      $state.go('menu.archive');
+    });
+  };
+})
+
+.controller('archiveController', function($scope,$ionicModal,Agenda,$rootScope,$stateParams) {
+  //------------------------- Voir les taches terminer -------------------------//
+  $scope.$on('$ionicView.enter', function(e) {
+    var user=$rootScope.User;
+    Agenda.getArchive(user.id).then(function success(response) {
+        console.log(response.data);
+        $scope.allArchive=response.data;
+    });
+  });
+})
+//--------------------------- Voir les taches de la semaine --------------------//
+.controller('semaineController', function($scope,$ionicModal,Agenda,$rootScope,$stateParams,$state) { 
+  //------------------ popup create task ----------------//
+  $ionicModal.fromTemplateUrl('templates/createTask.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });
+  if($stateParams.type==1)
+  {
+    //------------------ Voir les taches d'aujourd'hui ----------------//
+    $scope.$on('$ionicView.enter', function(e) {
+      var user=$rootScope.User;
+      var idTaskBox=$stateParams.idTaskBox;
+      $rootScope.idTaskBox=idTaskBox;
+      $scope.nomTaskBox="Aujourd'hui";
+      Agenda.getTaskAujourdhui(user.id).then(function success(response) {
+          console.log(response.data);
+          $scope.allTask=response.data;
+      });
+    });
+  }
  
-
+  else if($stateParams.type==2)
+  {
+     //------------------ Voir les taches de la semaine ----------------//
+    $scope.$on('$ionicView.enter', function(e) {
+      var user=$rootScope.User;
+      var idTaskBox=$stateParams.idTaskBox;
+      $rootScope.idTaskBox=idTaskBox;
+      $scope.nomTaskBox="Semaine";
+      Agenda.getTaskSemaine(user.id).then(function success(response) {
+          console.log(response.data);
+          $scope.allTask=response.data;
+      });
+    });
+  }
+  //---------------------------- terminer tache ----------------------------//
+  $scope.terminerTache = function(idTask){
+    Agenda.terminerTache(idTask).then(function success(response) {
+      $state.go('menu.archive');
+    });
+  };
 })
-.controller('homeController', function($scope,$ionicModal) { 
-  //------------------ popup create task ----------------//
-  $ionicModal.fromTemplateUrl('templates/createTask.html', {
-    scope: $scope,
-    animation: 'slide-in-up'
-  }).then(function(modal) {
-    $scope.modal = modal;
+
+.controller('taskDetailController', function($scope,$ionicModal,ionicDatePicker,ionicTimePicker,$rootScope,$stateParams,Agenda) { 
+  $scope.$on('$ionicView.enter', function(e) {
+    var idTache=$stateParams.idtask;
+    $scope.nomTache=$stateParams.nomtask;
+
+    var dateLimit=$stateParams.echeancetask.split(" ");
+    var dateRappel=$stateParams.rappeltask.split(" ");
+
+    $scope.datepick= dateLimit[0];
+    $scope.timepick= dateLimit[1];
+
+    $scope.datepick2= dateRappel[0];
+    $scope.timepick2= dateRappel[1];
+
+    $scope.detail=$stateParams.detailtask;
   });
-
-  //----------------- terminer tache -----------------//
-})
-
-.controller('archiveController', function($scope,$ionicModal) { 
-  //------------------ popup create task ----------------//
-  $ionicModal.fromTemplateUrl('templates/createTask.html', {
-    scope: $scope,
-    animation: 'slide-in-up'
-  }).then(function(modal) {
-    $scope.modal = modal;
-  });
-    //---------------- voir tache terminer ------------//
-})
-
-.controller('taskDetailController', function($scope,$ionicModal,ionicDatePicker,ionicTimePicker) { 
-  $scope.datepick= "22/12/2017";
-  $scope.timepick= "22:00:00";
-
-  $scope.datepick2= "24/12/2017";
-  $scope.timepick2= "12:40:00";
    //--------------------------- date picker -------------------------//
     var cible = {
       callback: function (val) {  //Mandatory
@@ -245,15 +337,33 @@ angular.module("menuController", [])
    
 })
 
-.controller('taskDetailArchiveController', function($scope) { 
-  $scope.datepick= "22/12/2017";
-  $scope.timepick= "22:00:00";
+.controller('taskDetailArchiveController', function($scope,$stateParams,$rootScope,Agenda,$state) {
+  $scope.$on('$ionicView.enter', function(e) {
+    var idTache=$stateParams.idtask; 
+    $scope.nomTache=$stateParams.nomtask;
 
-  $scope.datepick2= "24/12/2017";
-  $scope.timepick2= "12:40:00";
+    var dateLimit=$stateParams.echeancetask.split(" ");
+    var dateRappel=$stateParams.rappeltask.split(" ");
+
+    $scope.datepick= dateLimit[0];
+    $scope.timepick= dateLimit[1];
+
+    $scope.datepick2= dateRappel[0];
+    $scope.timepick2= dateRappel[1];
+
+    $scope.detail=$stateParams.detailtask;
+  });
+  
+  //---------------------------- restaurer tache ----------------------------//
+  $scope.restaurerTache = function(){
+    var idTache=$stateParams.idtask; 
+    Agenda.restaurerTache(idTache).then(function success(response) {
+      $state.go('menu.home',{idTaskBox:$stateParams.idTaskBox,nomTaskBox:$stateParams.nomTaskBox});
+    });
+  };
 })
 
-.controller('createTaskController', function($scope,$state,ionicDatePicker,ionicTimePicker) { 
+.controller('createTaskController', function($scope,$state,ionicDatePicker,ionicTimePicker,$rootScope,Agenda) { 
   //--------------------------- date picker -------------------------//
   var cible = {
     callback: function (val) {  //Mandatory
@@ -309,6 +419,8 @@ angular.module("menuController", [])
 
   //-------------------- métier create task -----------------------//
     $scope.createTask=function(task){
+      var idTaskBox=$rootScope.idTaskBox;
+      console.log(idTaskBox);
       if(task)
       {
         if(task.name!= undefined && task.name!="")
@@ -339,7 +451,6 @@ angular.module("menuController", [])
                     $scope.error="";
                     // -----------------appeler service create task sisa
                     $scope.modal.hide();  
-                    $state.go('menu.home');
                      
                   }else $scope.error="Le champs [Détail de la tâche] est vide"; 
                 }else $scope.error="L'heure de rappel est vide";

@@ -16,7 +16,7 @@ input[type="text"], input[type="password"], input[type="email"],textarea{
   font-weight: 600;
 }
 textarea {
-  resize: none;
+  resize: auto;
   overflow: hidden;
   transition: all 0.2s;
 }
@@ -217,7 +217,10 @@ textarea[readonly]:not(.cloned-text-input){
   position: relative;
   top:17px;
 }
-
+.item h2{
+  white-space: initial;
+  word-wrap: wrap;
+}
 /*-------- color thème bleu-vert
 tab : #368665;
 input : rgb(84, 185, 143);

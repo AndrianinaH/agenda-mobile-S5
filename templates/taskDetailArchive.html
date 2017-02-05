@@ -7,7 +7,7 @@
 		<form name="myForm" novalidate>
 			<label class="item item-input item-stacked-label">
 				<span class="input-label light">Nom de la tâche</span>
-				<input type="text" value="Finir interface menu home" disabled="disabled"> 
+				<input type="text" value="{{nomTache}}" disabled="disabled"> 
 			</label>
 			<div id="datePick">
 				<div id="infoDatePick">
@@ -25,11 +25,11 @@
 			</div>
 			<label class="item item-input item-stacked-label">
 				<span class="input-label light">Détail de la tâche</span>
-				<textarea  readonly="readonly">Finir toute les pages statics</textarea>   
+				<textarea  readonly="readonly" onfocus="auto_grow(this)">{{detail}}</textarea>   
 			</label>
 			<br>
 			<center>
-				<button class="button button-calm icon ion-ios-undo"> Restaurer</button> 
+				<button class="button button-calm icon ion-ios-undo" ng-click="restaurerTache()"> Restaurer</button> 
 				<button class="button button-assertive icon ion-trash-a"> Supprimer</button> 
 			</center>
 		</form>

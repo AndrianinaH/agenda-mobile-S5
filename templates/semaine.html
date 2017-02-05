@@ -6,16 +6,17 @@
 	<ion-content>
 		<ion-list ng-repeat="task in allTask">
 		    <ion-item class="item-remove-animate item-icon-right" id="list_icon" type="item-text-wrap">
-		      <div>
+		      <div id="icon_check">
 		      	  <a class="ion-android-checkbox-outline-blank" id="big_icon" ng-click="terminerTache({{task.idTache}})"></a>
 		      </div>
 	          <div>
 		          <h2>{{task.libelleTache}}</h2>
 				  <h4><strong><i class="ion-ios-timer-outline" id="mini_icon"></i>{{task.dateLimit}}</strong></h4>
+				  <h4><strong><i class="ion-android-list" id="mini_icon"></i>{{task.taskBox}}</strong></h4>
 		      </div>
 		      <a class="icon ion-chevron-right icon-accessory"  href="#/menu/taskDetail/{{task.idTache}}/{{task.libelleTache}}/{{task.dateLimit}}/{{task.dateCreation}}/{{task.detail}}"></a>
 		    </ion-item>
 	    </ion-list>
-		<button class="button button-positive icon ion-plus-round create_task" id="rond2" ng-click="modal.show()"></button>
+	    <button class="button button-positive icon ion-plus-round create_task" id="rond2" ng-click="modal.show()"></button>
 	</ion-content>
 </ion-view>

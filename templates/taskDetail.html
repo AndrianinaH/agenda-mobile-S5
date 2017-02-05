@@ -7,7 +7,7 @@
 		<form name="myForm" novalidate>
 			<label class="item item-input item-stacked-label">
 				<span class="input-label light">Nom de la tâche</span>
-				<input type="text" placeholder="Finir interface menu home"> 
+				<input type="text" value="{{nomTache}}"> 
 			</label>
 			<div id="datePick">
 				<div id="infoDatePick">
@@ -33,7 +33,7 @@
 			</div>
 			<label class="item item-input item-stacked-label">
 				<span class="input-label light">Détail de la tâche</span>
-				<textarea placeholder="Détail de la tâche" onkeyup="auto_grow(this)"></textarea>   
+				<textarea onkeyup="auto_grow(this)" onfocus="auto_grow(this)">{{detail}}</textarea>   
 			</label> 
 			<br>
 			<center>

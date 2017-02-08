@@ -3,7 +3,7 @@
     <ion-nav-bar class="bar-stable">
       <ion-nav-back-button class="button-clear"><i class="ion-ios-arrow-left"></i> Retour</ion-nav-back-button>
       <ion-nav-buttons side="right">
-        <a class="button button-clear icon ion-android-notifications" href="#/tab/login"><i class="badge badge-assertive" id="badgeflottant">0</i></a>
+        <a class="button button-clear icon ion-android-notifications" ng-click="openListRappel($event)"><i class="badge badge-assertive" id="badgeflottant">{{nbrRappel}}</i></a>
         <a class="button button-{{color}} button-large" id="rond2" ng-click = "openPopover($event)">{{initial}}</a>
       </ion-nav-buttons>
     </ion-nav-bar>

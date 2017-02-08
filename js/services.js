@@ -1,14 +1,14 @@
 angular.module('starter.services', [])
 
-.factory('Agenda', function($http,$state) { 
+.factory('Agenda', function($http,$state,$moment,$rootScope) { 
     
     return{
 
         //------------- formater date -----------//
-        formterDate: function(date){
+        formaterDate: function(date){
             var day=date.split(" ");
-            var days=day[0].split("-");
-            var ret= days[2]+"/"+days[1]+"/"+days[0]+" "+day[1];
+            var days=day[0].split("/");
+            var ret= days[2]+"-"+days[1]+"-"+days[0]+" "+day[1];
             return ret;
         },
         //------------- formater date solo -----------//
@@ -16,6 +16,16 @@ angular.module('starter.services', [])
             var day=date.split("-");
             var ret= day[2]+"/"+day[1]+"/"+day[0];
             return ret;
+        },
+        //------------- formater date momentjs -----------//
+        formaterDateMoment: function(date){
+            var final=$moment(date, "DD/MM/YYYY HH:mm").calendar();
+            return final;
+        },
+        //------------- get date by momentjs -----------//
+        getDateMoment: function(date){
+            var final=$moment(date, "DD/MM/YYYY HH:mm");
+            return final;
         },
         //------------- affichage image de profil -----------//
         getInitial: function(email){
@@ -41,7 +51,7 @@ angular.module('starter.services', [])
         {
             return $http({
             method: "post",
-            url: "http://localhost:8080/listeo/webservice/login.jsp",
+            url: $rootScope.baseUrl+"/webservice/login.jsp",
             data: 'mail='+email+'&mdp='+mdp,
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             });
@@ -51,7 +61,7 @@ angular.module('starter.services', [])
         {
             return $http({
             method: "post",
-            url: "http://localhost:8080/listeo/webservice/inscription.jsp",
+            url: $rootScope.baseUrl+"/webservice/inscription.jsp",
             data: 'nom='+nom+'&dateNaiss='+datenaissance+'&mail='+email+'&pass='+mdp,
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             });
@@ -63,7 +73,7 @@ angular.module('starter.services', [])
         {
             return $http({
             method: "post",
-            url: "http://localhost:8080/listeo/webservice/taskBoxByUser.jsp",
+            url: $rootScope.baseUrl+"/webservice/taskBoxByUser.jsp",
             data: 'idUser='+idUser,
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             });
@@ -73,7 +83,7 @@ angular.module('starter.services', [])
         {
             return $http({
             method: "post",
-            url: "http://localhost:8080/listeo/webservice/archiveTache.jsp",
+            url: $rootScope.baseUrl+"/webservice/archiveTache.jsp",
             data: 'idUser='+idUser,
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             });
@@ -83,7 +93,7 @@ angular.module('starter.services', [])
         {
             return $http({
             method: "post",
-            url: "http://localhost:8080/listeo/webservice/tacheNonFaitUser.jsp",
+            url: $rootScope.baseUrl+"/webservice/tacheNonFaitUser.jsp",
             data: 'idTaskBox='+idTaskBox,
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             });
@@ -93,7 +103,7 @@ angular.module('starter.services', [])
         {
             return $http({
             method: "post",
-            url: "http://localhost:8080/listeo/webservice/tacheAujourdhui.jsp",
+            url: $rootScope.baseUrl+"/webservice/tacheAujourdhui.jsp",
             data: 'idUser='+idUser,
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             });
@@ -103,7 +113,7 @@ angular.module('starter.services', [])
         {
             return $http({
             method: "post",
-            url: "http://localhost:8080/listeo/webservice/tacheSemaine.jsp",
+            url: $rootScope.baseUrl+"/webservice/tacheSemaine.jsp",
             data: 'idUser='+idUser,
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             });
@@ -114,7 +124,7 @@ angular.module('starter.services', [])
         {
             return $http({
             method: "post",
-            url: "http://localhost:8080/listeo/webservice/terminerTache.jsp",
+            url: $rootScope.baseUrl+"/webservice/terminerTache.jsp",
             data: 'idTask='+idTask,
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             });
@@ -124,7 +134,7 @@ angular.module('starter.services', [])
         {
             return $http({
             method: "post",
-            url: "http://localhost:8080/listeo/webservice/restaurerTache.jsp",
+            url: $rootScope.baseUrl+"/webservice/restaurerTache.jsp",
             data: 'idTask='+idTask,
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             });
@@ -134,7 +144,7 @@ angular.module('starter.services', [])
         {
             return $http({
             method: "post",
-            url: "http://localhost:8080/listeo/webservice/createBox.jsp",
+            url: $rootScope.baseUrl+"/webservice/createBox.jsp",
             data: 'nomTaskBox='+nomTaskBox+'&idUser='+idUser,
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             });
@@ -144,7 +154,7 @@ angular.module('starter.services', [])
         {
             return $http({
             method: "post",
-            url: "http://localhost:8080/listeo/webservice/updateBox.jsp",
+            url: $rootScope.baseUrl+"/webservice/updateBox.jsp",
             data: 'nomTaskBox='+nomTaskBox+'&idTaskBox='+idTaskBox,
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             });
@@ -154,8 +164,48 @@ angular.module('starter.services', [])
         {
             return $http({
             method: "post",
-            url: "http://localhost:8080/listeo/webservice/deleteBox.jsp",
+            url: $rootScope.baseUrl+"/webservice/deleteBox.jsp",
             data: 'idTaskBox='+idTaskBox,
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            });
+        },
+        //------------- get reminder by idtask -------------//
+        getReminder: function(idTache)
+        {
+            return $http({
+            method: "post",
+            url: $rootScope.baseUrl+"/webservice/getReminder.jsp",
+            data: 'idTache='+idTache,
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            });
+        },
+        //------------- get reminder by idtask -------------//
+        getAllReminder: function(iduser)
+        {
+            return $http({
+            method: "post",
+            url: $rootScope.baseUrl+"/webservice/getAllReminder.jsp",
+            data: 'iduser='+iduser,
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            });
+        },
+        //-------------------------------- edit Task ------------------------------//
+        editTask: function(description,echeance,details,idtache,alarm)
+        {
+            return $http({
+            method: "post",
+            url: $rootScope.baseUrl+"/webservice/editTask.jsp",
+            data: 'description='+description+'&echeance='+echeance+'&details='+details+'&idtache='+idtache+'&alarm='+alarm,
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            });
+        },
+        //-------------------------------- create Task ------------------------------//
+        createTask: function(description,echeance,details,idtaskbox,alarm)
+        {
+            return $http({
+            method: "post",
+            url: $rootScope.baseUrl+"/webservice/createTask.jsp",
+            data: 'description='+description+'&echeance='+echeance+'&details='+details+'&idtaskbox='+idtaskbox+'&alarm='+alarm,
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             });
         },

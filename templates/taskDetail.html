@@ -4,10 +4,10 @@
 		<button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
 	</ion-nav-buttons>
 	<ion-content class="padding">
-		<form name="myForm" novalidate>
+		<form name="myForm" ng-submit="editTask(nomTache,detail)" novalidate>
 			<label class="item item-input item-stacked-label">
 				<span class="input-label light">Nom de la tâche</span>
-				<input type="text" value="{{nomTache}}"> 
+				<input type="text" ng-model="nomTache"> 
 			</label>
 			<div id="datePick">
 				<div id="infoDatePick">
@@ -33,11 +33,11 @@
 			</div>
 			<label class="item item-input item-stacked-label">
 				<span class="input-label light">Détail de la tâche</span>
-				<textarea onkeyup="auto_grow(this)" onfocus="auto_grow(this)">{{detail}}</textarea>   
+				<textarea onkeyup="auto_grow(this)" onfocus="auto_grow(this)" ng-model="detail"></textarea>   
 			</label> 
 			<br>
 			<center>
-			    <button class="button button-balanced icon ion-edit">
+			    <button class="button button-balanced icon ion-edit" type="submit">
 				  Editer
 				</button>
 			</center>

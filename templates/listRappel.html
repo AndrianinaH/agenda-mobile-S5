@@ -1,0 +1,22 @@
+<ion-popover-view id="listRappelPopover" ng-controller="listRappelController">
+    <ion-header-bar class="bar bar-header bar-assertive">
+      <h1 class="title">Liste des Alarmes</h1>
+      <button class="button button-clear icon ion-close" ng-click="closeListRappel()"></button>
+    </ion-header-bar>
+    <ion-content scroll="true" id="editListFond">
+        <div class="item-remove-animate" type="item-text-wrap">
+            <ion-list ng-repeat="rappel in allRappel">
+            <ion-item class="item-remove-animate item-icon-right" id="list_icon2" type="item-text-wrap">
+              <div>
+                  <a class="ion-android-notifications" id="moyen_icon"></a>
+              </div>
+              <div>
+                  <h3>{{rappel.libelle}}</h3>
+                  <h3><strong><i class="ion-ios-timer-outline" id="mini_icon"></i>{{formaterDateMoment(rappel.dateReminder)}}</strong></h3>
+              </div>
+            </ion-item>
+            <hr>
+        </ion-list>
+        </div>
+    </ion-content>
+</ion-popover-view>

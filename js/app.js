@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'menuController', 'starter.services', 'ionic-datepicker', 'ionic-timepicker'])
+angular.module('starter', ['ionic', 'menuController', 'starter.services', 'ionic-datepicker', 'ionic-timepicker','angular-momentjs','ngCordova'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -14,7 +14,6 @@ angular.module('starter', ['ionic', 'menuController', 'starter.services', 'ionic
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
-
     }
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
@@ -45,6 +44,11 @@ angular.module('starter', ['ionic', 'menuController', 'starter.services', 'ionic
     };
     ionicTimePickerProvider.configTimePicker(timePickerObj);
   })
+.config(function($momentProvider){
+    $momentProvider
+      .asyncLoading(false)
+      .scriptUrl('lib/momentjs/moment.min.js');
+})
 .config(function($stateProvider, $urlRouterProvider) {
 
   // Ionic uses AngularUI Router which uses the concept of states
@@ -111,6 +115,15 @@ angular.module('starter', ['ionic', 'menuController', 'starter.services', 'ionic
   //-------------- Liste des tâches --------------//
   .state('menu.home', {
     url: '/home/:idTaskBox/:nomTaskBox',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/home.html',
+        controller: 'homeController'
+      }
+    }
+  })
+  .state('menu.homeCreate', {
+    url: '/home/:idTaskBox/:nomTaskBox/:is_create',
     views: {
       'menuContent': {
         templateUrl: 'templates/home.html',

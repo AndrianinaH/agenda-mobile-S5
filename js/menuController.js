@@ -2,8 +2,8 @@ angular.module("menuController", [])
 
 //------------------------------------------- login et inscription -------------------------------------//
 .controller('inscriptionController', function($scope,$state,ionicDatePicker, Agenda,$rootScope) {
-  //$rootScope.baseUrl="http://agendas5.herokuapp.com";
-  $rootScope.baseUrl="http://localhost:8080/listeo";
+  $rootScope.baseUrl="http://agendas5.herokuapp.com";
+  //$rootScope.baseUrl="http://localhost:8080/listeo";
   //---------------------- Date picker -----------------------//  
     var cible = {
       callback: function (val) {  //Mandatory
@@ -67,8 +67,8 @@ angular.module("menuController", [])
 
 .controller('loginController', function($scope,$stateParams,$state,$window,Agenda,$rootScope,$cordovaLocalNotification) { 
     //inscription reussi
-    //$rootScope.baseUrl="http://agendas5.herokuapp.com";
-    $rootScope.baseUrl="http://localhost:8080/listeo";
+    $rootScope.baseUrl="http://agendas5.herokuapp.com";
+    //$rootScope.baseUrl="http://localhost:8080/listeo";
     if($stateParams.success==1)$scope.error="Inscription réussi";
     $scope.connect=function(user){
       if(user)

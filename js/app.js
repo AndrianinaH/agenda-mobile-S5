@@ -7,7 +7,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'menuController', 'starter.services', 'ionic-datepicker', 'ionic-timepicker','angular-momentjs','ngCordova'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform,$cordovaLocalNotification) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -19,6 +19,7 @@ angular.module('starter', ['ionic', 'menuController', 'starter.services', 'ionic
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+
   });
 })
 .config(function (ionicDatePickerProvider) {
@@ -38,7 +39,7 @@ angular.module('starter', ['ionic', 'menuController', 'starter.services', 'ionic
     var timePickerObj = {
       inputTime: (((new Date()).getHours() * 60 * 60) + ((new Date()).getMinutes() * 60)),
       format: 24,
-      step: 5,
+      step: 1,
       setLabel: 'Choisir',
       closeLabel: 'Fermer'
     };
